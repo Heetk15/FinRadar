@@ -34,12 +34,12 @@ function peakFromRows(rows: HistoryRow[]): {
   };
 }
 
-interface DoomAnalyticsProps {
+interface FinRadarAnalyticsProps {
   timeline: TimelineOption;
   history: HistoryRow[];
 }
 
-export function DoomAnalytics({ timeline, history }: DoomAnalyticsProps) {
+export function FinRadarAnalytics({ timeline, history }: FinRadarAnalyticsProps) {
   const peak = useMemo(() => peakFromRows(history), [history]);
   const edge = peak.score !== null && peak.score >= 60 ? "border-red-600" : "border-zinc-800";
 
