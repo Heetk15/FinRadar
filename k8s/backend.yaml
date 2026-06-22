@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: FinRadar-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: FinRadar-backend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: REDIS_URL
+              value: redis://redis.FinRadar-prod.svc.cluster.local:6379/0
+            - name: DATABASE_URL
+              value: postgresql+psycopg2://doom_user:doom_pass@postgres.FinRadar-prod.svc.cluster.local:5432/FinRadar_db
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: FinRadar-prod
+spec:
+  selector:
+    app: backend
+  ports:
+    - name: backend
+      port: 8000
+      targetPort: 8000
+  type: ClusterIP

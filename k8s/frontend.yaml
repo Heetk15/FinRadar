@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: FinRadar-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: FinRadar-frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: FinRadar-prod
+spec:
+  selector:
+    app: frontend
+  ports:
+    - name: frontend
+      port: 3000
+      targetPort: 3000
+      nodePort: 30030
+  type: NodePort

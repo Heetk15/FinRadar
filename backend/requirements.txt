@@ -1,0 +1,9 @@
+fastapi==0.103.1
+uvicorn==0.23.2
+redis==5.0.0
+requests==2.31.0
+python-dotenv==1.0.0
+transformers==4.36.2
+sqlalchemy==2.0.25
+psycopg2-binary==2.9.9
+pytest
