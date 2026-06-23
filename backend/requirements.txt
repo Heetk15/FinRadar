@@ -7,3 +7,5 @@ transformers==4.36.2
 sqlalchemy==2.0.25
 psycopg2-binary==2.9.9
 pytest
+
+apscheduler==3.10.4

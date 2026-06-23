@@ -91,56 +91,50 @@ export function SentimentMonitor({
   }, [load]);
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.25 }}
-      className={`flex h-full min-h-[250px] flex-col border bg-zinc-950 p-4 lg:min-h-0 ${edge}`}
-    >
-      <div className="mb-3 flex items-center gap-2 text-zinc-500">
-        <Radio className="h-4 w-4" strokeWidth={1.5} aria-hidden />
-        <span className="text-xs uppercase tracking-[0.2em]">
-          Live sentiment
-        </span>
+    <div className="flex h-full min-h-[250px] flex-col p-5">
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-2 text-gray-400">
+          <Activity className="h-4 w-4 text-brand-accent" strokeWidth={1.5} aria-hidden />
+          <span className="font-sans text-xs font-medium uppercase tracking-wider">
+            Live Sentiment
+          </span>
+        </div>
       </div>
 
-      <div className="flex flex-1 flex-col gap-3">
-        <div className="mx-auto w-full max-w-xs">
+      <div className="flex flex-1 flex-col gap-4">
+        <div className="mx-auto w-full max-w-[200px]">
           <PanicGauge value={panicScore} min={0} max={100} />
         </div>
-        <p className={`text-center font-mono text-xs uppercase tracking-[0.24em] ${signal.classes}`}>
+        <p className={`text-center font-sans text-sm font-semibold tracking-wide ${signal.classes}`}>
           {signal.text}
         </p>
         {loading && (
-          <p className="font-mono text-xs uppercase tracking-wider text-zinc-600">
+          <p className="font-sans text-xs uppercase tracking-wider text-gray-500 text-center">
             Synchronizing feed...
           </p>
         )}
         {error && (
-          <p className="font-mono text-xs text-zinc-600">[{error}]</p>
+          <p className="font-mono text-xs text-red-400 text-center">[{error}]</p>
         )}
-        <p className="w-full max-w-prose font-mono text-sm leading-relaxed text-zinc-400">
+        <p className="mx-auto w-full max-w-prose text-center font-sans text-sm leading-relaxed text-gray-300">
           {headline === "NO DATA" ? (
-            <span className="text-zinc-600">NO DATA</span>
+            <span className="text-gray-600">No headline data available.</span>
           ) : (
             headline
           )}
         </p>
       </div>
 
-      <div
-        className={`mt-4 flex items-center justify-between gap-2 border-t pt-3 text-zinc-600 ${edge}`}
-      >
+      <div className="mt-4 flex items-center justify-between gap-2 border-t border-brand-panelDark pt-4 text-gray-500">
         <span className="flex items-center gap-2">
-          <Activity className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden />
           <span className="font-mono text-[10px] uppercase tracking-wider">
-            Interval {POLL_MS / 1000}s
+            Polling Interval: {POLL_MS / 1000}s
           </span>
         </span>
-        <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-500">
-          {timeline} / {history.length}
+        <span className="font-mono text-[10px] uppercase tracking-wider text-gray-500">
+          {timeline} / {history.length} events
         </span>
       </div>
-    </motion.section>
+    </div>
   );
 }

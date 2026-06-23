@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
 import { CommandChrome } from "@/components/CommandChrome";
 import "./globals.css";
 
+const inter = Inter({ subsets: ["latin"] });
+
 export const metadata: Metadata = {
-  title: "FinRadar — Intelligence",
-  description: "Market sentiment command center",
+  title: "FinRadar — Market Intelligence",
+  description: "Market sentiment and intelligence data platform",
 };
 
 export default function RootLayout({
@@ -14,8 +17,8 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" className="rounded-none">
-      <body className="min-h-screen rounded-none bg-zinc-950">
+    <html lang="en" className={inter.className}>
+      <body className="min-h-screen bg-[#0B1020] text-gray-200">
         <CommandChrome>{children}</CommandChrome>
       </body>
     </html>

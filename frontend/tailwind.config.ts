@@ -9,8 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        doom: {
-          accent: "#f97316",
+        brand: {
+          bg: "#0B1020",
+          panel: "#111827",
+          panelDark: "#0F172A",
+          accent: "#10b981",
+          accentDark: "#047857",
         },
       },
     },

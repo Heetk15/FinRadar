@@ -96,47 +96,42 @@ export default function DashboardPage() {
   const defcon = isFiniteScore && panicScore >= 80;
 
   return (
-    <div className="relative flex h-[calc(100vh-6rem)] flex-col overflow-hidden">
-      {defcon && (
-        <div
-          className="fixed left-0 right-0 top-0 z-50 h-[10px] bg-red-600"
-          aria-hidden
-        />
-      )}
-
-      <div className={`flex min-h-0 flex-1 flex-col overflow-hidden ${defcon ? "pt-[10px]" : ""}`}>
-        <div className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-zinc-800 pb-4">
-          <h1 className="font-mono text-[10px] uppercase tracking-[0.35em] text-zinc-600">
-            Macro terminal / Behavioral finance core
+    <div className="relative flex h-[calc(100vh-6rem)] flex-col overflow-hidden bg-brand-bg text-gray-200">
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+        <div className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-brand-panelDark pb-4">
+          <h1 className="font-sans text-sm font-semibold text-gray-300">
+            Market Intelligence Data Platform
           </h1>
-          <span className="flex items-center gap-2 font-mono text-[10px] text-zinc-600">
-            <Cpu className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden />
-            CONTRARIAN ENGINE ONLINE
+          <span className="flex items-center gap-2 font-mono text-[10px] text-gray-500">
+            <Cpu className="h-3.5 w-3.5 text-brand-accent" strokeWidth={1.5} aria-hidden />
+            ENGINE ONLINE
           </span>
         </div>
 
         <div className="grid min-h-0 flex-1 gap-4 overflow-hidden lg:grid-cols-3">
-          <div className="flex min-h-0 flex-col gap-3 lg:col-span-2 lg:grid lg:grid-rows-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-3">
-            <div className="min-h-0">
+          <div className="flex min-h-0 flex-col gap-4 lg:col-span-2 lg:grid lg:grid-rows-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-4">
+            <div className="min-h-0 rounded-lg border border-brand-panelDark bg-brand-panel shadow-sm">
               <SentimentMonitor
                 onPanicScore={setPanicScore}
                 timeline={timeline}
                 history={deduplicatedHistory}
               />
             </div>
-            <div className="min-h-0">
+            <div className="min-h-0 rounded-lg border border-brand-panelDark bg-brand-panel shadow-sm">
               <FinRadarAnalytics timeline={timeline} history={deduplicatedHistory} />
             </div>
           </div>
-          <RawIntelFeed
-            timeline={timeline}
-            setTimeline={setTimeline}
-            history={deduplicatedHistory}
-            loading={historyLoading}
-            error={historyError}
-            lastRefreshAt={lastRefreshAt}
-            nowTs={nowTs}
-          />
+          <div className="rounded-lg border border-brand-panelDark bg-brand-panel shadow-sm min-h-0">
+            <RawIntelFeed
+              timeline={timeline}
+              setTimeline={setTimeline}
+              history={deduplicatedHistory}
+              loading={historyLoading}
+              error={historyError}
+              lastRefreshAt={lastRefreshAt}
+              nowTs={nowTs}
+            />
+          </div>
         </div>
       </div>
     </div>

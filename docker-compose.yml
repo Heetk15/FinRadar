@@ -36,7 +36,7 @@ services:
       - ./backend/.env
     environment:
       - REDIS_URL=redis://redis:6379/0
-      - DATABASE_URL=postgresql+psycopg2://doom_user:doom_pass@db:5432/FinRadar_db
+      - DATABASE_URL=postgresql+psycopg2://doom_user:doom_pass@finradar-db-1:5432/FinRadar_db
 
   frontend:
     build: 

@@ -133,7 +133,7 @@ export function PanicGauge({
 
   return (
     <div className={`relative flex flex-col items-center ${className}`}>
-      <div className="relative border border-zinc-800 bg-zinc-950 p-4">
+      <div className="relative p-2">
         <svg
           width="100%"
           height="auto"
@@ -249,7 +249,7 @@ export function PanicGauge({
           />
         </svg>
       </div>
-      <p className="mt-3 font-mono text-xs tabular-nums text-zinc-500">
+      <p className="mt-3 font-sans text-sm font-semibold tabular-nums text-gray-400">
         SCORE{" "}
         <span style={{ color: needleColor }}>
           {displayScore}
